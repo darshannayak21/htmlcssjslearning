@@ -1,0 +1,52 @@
+p {
+            font-family: Arial;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            width: 300px;
+            line-height: 24px;
+            margin-bottom: 5px;
+        }
+
+        .info {
+            font-size: 14px;
+            color: rgb(96, 96, 96);
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .channel {
+            font-size: 14px;
+            color: rgb(96, 96, 96);
+            margin-bottom: 15px;
+        }
+
+        .description {
+            font-size: 14px;
+            color: rgb(96, 96, 96);
+            margin-top: 0;
+            width: 300px;
+            text-align: justify;
+            line-height: 20px;
+            margin-bottom: 50px;
+        }
+
+        .contact-darshan {
+            font-size: 14px;
+            background-color: red;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            color: white;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .link:hover {
+            cursor: pointer;
+            color: white;
+            text-decoration: underline;
+        }
