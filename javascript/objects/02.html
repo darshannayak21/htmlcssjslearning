@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>objects</title>
+</head>
+<body>
+    <script>
+        const product ={
+            name:"macbook pro",
+            'deliver-time':'2-3 days',
+            rating:{
+                star:4.0,
+                count:1000,
+            },
+            fun: function darshan(){
+                console.log('this is a function inside an object');
+            }
+        }
+        console.log(product.name);
+        console.log(product['deliver-time']);
+        console.log(product.rating.star);
+        console.log(product.rating.count);
+        console.log(product.rating);
+        const jsontype=JSON.stringify(product);
+        console.log(jsontype);   
+        const parsed=JSON.parse(jsontype);
+        console.log(parsed);
+        product.fun();
+    </script>
+</body>
+</html>

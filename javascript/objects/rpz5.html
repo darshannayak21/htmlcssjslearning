@@ -97,12 +97,12 @@
     </div>
 
     <script>
-        const score = {
+        const score = JSON.parse(localStorage.getItem('score'))|| {
             win: 0,
             loose: 0,
-            draw:0
+            draw: 0
         };
-
+        
         function countscore(result) {
             if (result === 'you win') {
                 score.win += 1;
@@ -111,12 +111,14 @@
             } else {
                 score.draw += 1;
             }
+
         }
 
         function updateScore() {
         document.getElementById('win-score').textContent = score.win;
         document.getElementById('loose-score').textContent = score.loose;
         document.getElementById('draw-score').textContent = score.draw;
+        localStorage.setItem('score', JSON.stringify(score));   
         }
 
         function resetScore() {
@@ -159,7 +161,7 @@
             }
             alert(`computer chose ${computermove} and ${result}`);
             countscore(result);
-            updateScore();
+            updateScore(); 
         }
     
         function pickcomputerMove() {
@@ -175,6 +177,7 @@
             console.log(computermove);
             return computermove;
         }
+        updateScore();
     </script>
 </body>
 </html>
