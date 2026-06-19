@@ -97,12 +97,23 @@
     </div>
 
     <script>
-        const score = JSON.parse(localStorage.getItem('score'))|| {
-            win: 0,
-            loose: 0,
-            draw: 0
-        };
-        
+        let score = JSON.parse(localStorage.getItem('score')); 
+        if (score === null) {
+            score = {
+                win: 0,
+                loose: 0,
+                draw: 0
+            };
+        }
+
+        /*
+        let score = JSON.parse(localStorage.getItem('score'))||
+                {
+                    win: 0,
+                    loose: 0,
+                    draw: 0
+                };
+        */
         function countscore(result) {
             if (result === 'you win') {
                 score.win += 1;
