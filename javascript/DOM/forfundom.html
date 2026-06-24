@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM</title>
+</head>
+<body>
+    <input type="text" class="input-text" placeholder="enter your name">
+    <button onclick="submitname()">submit</button>
+    <p class="output"></p>
+    <script>
+        const name=document.querySelector('.input-text');
+        function submitname(){
+            document.querySelector('.output').innerHTML=`Hello, ${name.value}!`;
+        }
+    </script>
+</body>
+</html>

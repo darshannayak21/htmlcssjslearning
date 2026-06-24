@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arrays and List</title>
+</head>
+<body>
+    <!--
+     <p>To-do list practice 1</p>
+    <input type="text" id="input" class="addtolist" onkeydown="
+        enterkey(event)" placeholder="Enter your task">
+    <button id="add" onclick="addingtolist()" >Add</button>
+    -->
+
+
+    <p>To-do list practice 2</p>
+    <input type="text" id="input" class="addtolist" onkeydown="
+        enterkey(event)" placeholder="Enter your task">
+    <button id="add" class="display" onclick="addingtolist()" >Add</button>
+    <p class="output"></p>
+
+    <script>
+        let listarray = [];
+    
+        function displaylist(listarray){
+            let number = listarray.length;
+            let output ='';
+            for(let i=0;i<number;i++){
+                let item = listarray[i];
+                let html =`
+                <p>${item}</p> 
+                <button class="delete" onclick="listarray.splice(${i},1); 
+                                                displaylist(listarray);">
+                    Delete
+                </button>
+                `;
+                output=output+html;
+            }
+            document.querySelector('.output').innerHTML = output;
+
+        }
+    
+
+
+        function enterkey(event){
+            let enteredkey = event.key;
+            if(enteredkey==='Enter'){
+                addingtolist();
+            }
+        }
+
+        function addingtolist(){
+        let item=document.querySelector('.addtolist').value;
+        listarray.push(item);
+        console.log(listarray);
+        let singleitem=document.querySelector('.addtolist');
+        singleitem.value=""; //this is done to clear the input field after adding the item to the list
+        displaylist(listarray);
+    }
+    </script>
+</body>
+</html>

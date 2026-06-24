@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM projects</title>
+        <style>
+            body{
+                font-family:arial;
+            }
+            .subscribe-button {
+                border-radius: 55px;
+                border: none;
+                height: 40px;
+                width: 120px;
+                font-size: 15px;
+                font-weight: bold;
+                font-family:arial;
+                background-color:black;
+                color: white;
+                transition: 0.5s;
+                margin-bottom: 30px;
+            }
+            .subscribe-button:hover {
+                height: 45px;
+                width: 130px;
+            }
+            .subscribed{
+                background-color: rgb(240,240,240);
+                color: black;
+            }
+
+            .calculate-button {
+                font-size: 15px;
+                height: 40px;
+                border-radius: 3px;
+                border: 0.5px solid grey;
+                padding-left: 10px;
+                margin-right: 0px;
+            }
+
+            .calcbu {
+                border-radius: 2px;
+                border: none;
+                height: 42px;
+                width: 100px;
+                font-size: 15px;
+                font-weight: bold;
+                font-family:arial;
+                background-color:green;
+                color: white;
+                transition: 0.5s;
+                margin-left: 0px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <p>Subscribe button</p>
+        <button class="subscribe-button" onclick="
+            subsribebutton();
+             " >subscribe</button>   
+             
+        <p> AMAZON SHIPPING CALCULATOR </p>
+        <input type="number" class="calculate-button" onkeydown="handleenter(event)"
+        placeholder="cost of order">
+        <button class ="calcbu" onclick="
+        calculatetotal()
+        ">calculate</button>
+
+        <p class="output"></p>
+
+
+        <script>
+            function calculatetotal(){
+                const cost= document.querySelector('.calculate-button');
+                let number=Number(cost.value);
+                if(number<40){
+                    number=number+10;
+                }
+                document.querySelector('.output').innerHTML=`total cost is $${number}`;
+            }
+
+            function handleenter(event){
+                let enteredkey = event.key;
+                if(enteredkey==='Enter'){
+                    calculatetotal();
+                }
+            }
+
+            function subsribebutton(){
+                const button = document.querySelector('.subscribe-button');
+                if(button.innerText==='subscribe'){
+                    button.innerText='subscribed';
+                    button.classList.add('subscribed');
+                }
+                else{
+                    button.innerText='subscribe';
+                    button.classList.remove('subscribed');
+                }
+            }
+        </script>   
+    </body>
+</html>
