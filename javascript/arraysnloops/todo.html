@@ -2,6 +2,63 @@
 <html>
 <head>
     <title>Arrays and List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            font-family: Arial;
+            display: flex;
+            justify-content: center; 
+        }
+        .container{
+         width: 600px;
+        }
+        .todo-grid{
+            display: grid;
+            align-items: center;
+            grid-template-columns: 2fr 1.5fr 1fr;
+            column-gap: 10px;
+            row-gap:10px;
+            margin:0 auto;
+            align-items: center;
+        }
+        .addtolist{
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            height:25px;
+            font-size: 14px;    
+        }
+
+        .addbutton{
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            border: 1px solid darkgreen;
+            border-radius: 5px;
+            padding: 5px;
+            cursor: pointer;
+            height: 35px;
+        }
+        .heading{
+            font-size: 15px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .deletebutton{
+            background-color: #f44336;
+            color: white;
+            font-weight: bold;
+            border: 1px solid darkred;
+            border-radius: 5px;
+            padding: 5px;
+            cursor: pointer;
+            height: 35px;
+        }
+
+    </style>
 </head>
 <body>
     <!--
@@ -11,27 +68,39 @@
     <button id="add" onclick="addingtolist()" >Add</button>
     -->
 
-
-    <p>To-do list practice 2</p>
-    <input type="text" id="input" class="addtolist" onkeydown="
+    <div class="container">
+    <p class="heading"> Darshan's To-do list </p>
+    <div class="todo-grid">
+    <input type="text"class="addtolist" onkeydown="
         enterkey(event)" placeholder="Enter your task">
-    <button id="add" class="display" onclick="addingtolist()" >Add</button>
-    <p class="output"></p>
+    <input type="date"class="addtolist datedesign" onkeydown="
+        enterkey(event)" placeholder="Enter due date">
+    <button id="add" class="display addbutton" onclick="addingtolist()" >Add</button>
+    <p class="output todo-grid"></p>
+    </div>
+    </div>
+
 
     <script>
         let listarray = [];
     
-        function displaylist(listarray){
+        function displaylist(){
             let number = listarray.length;
             let output ='';
             for(let i=0;i<number;i++){
-                let item = listarray[i];
-                let html =`
-                <p>${item}</p> 
-                <button class="delete" onclick="listarray.splice(${i},1); 
-                                                displaylist(listarray);">
-                    Delete
-                </button>
+                const item = listarray[i];
+                const task = item.task;
+                const date = item.duedate;
+
+                const html =`
+                    <div>${task}</div> 
+                    <div>${date}</div>
+                    <button class="deletebutton" onclick="
+                        listarray.splice(${i},1);
+                        displaylist();
+                    ">
+                        Delete
+                    </button>
                 `;
                 output=output+html;
             }
@@ -49,12 +118,15 @@
         }
 
         function addingtolist(){
-        let item=document.querySelector('.addtolist').value;
-        listarray.push(item);
+        let item=document.querySelectorAll('.addtolist');
+        listarray.push({
+            task: item[0].value,
+            duedate: item[1].value
+        });   
         console.log(listarray);
-        let singleitem=document.querySelector('.addtolist');
-        singleitem.value=""; //this is done to clear the input field after adding the item to the list
-        displaylist(listarray);
+        item[0].value=""; //this is done to clear the input field after adding the item to the list
+        item[1].value=""; //this is done to clear the date field after adding the item to the list
+        displaylist();
     }
     </script>
 </body>

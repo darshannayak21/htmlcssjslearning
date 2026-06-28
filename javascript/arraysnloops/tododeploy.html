@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Darshan's To-do List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, sans-serif;
+            background:#f5f5f5;
+            display:flex;
+            justify-content:center;
+            padding:30px 15px;
+        }
+
+        .container{
+            width:100%;
+            max-width:700px;
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .heading{
+            text-align:center;
+            font-size:28px;
+            font-weight:bold;
+            margin-bottom:20px;
+        }
+
+        .todo-grid{
+            display:grid;
+            grid-template-columns:2fr 1.5fr auto;
+            gap:10px;
+            align-items:center;
+        }
+
+        .output{
+            margin-top:20px;
+        }
+
+        .addtolist{
+            width:100%;
+            padding:10px;
+            font-size:15px;
+            border:1px solid #ccc;
+            border-radius:6px;
+        }
+
+        .addbutton,
+        .deletebutton{
+            padding:10px;
+            font-size:15px;
+            font-weight:bold;
+            border:none;
+            border-radius:6px;
+            color:white;
+            cursor:pointer;
+        }
+
+        .addbutton{
+            background:#4CAF50;
+        }
+
+        .deletebutton{
+            background:#f44336;
+        }
+
+        /* Mobile */
+
+        @media (max-width:600px){
+
+            .todo-grid{
+                grid-template-columns:1fr;
+            }
+
+            .addbutton,
+            .deletebutton{
+                width:100%;
+            }
+
+            .heading{
+                font-size:24px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <p class="heading">Darshan's To-do List</p>
+
+    <div class="todo-grid">
+
+        <input
+            type="text"
+            class="addtolist"
+            placeholder="Enter your task"
+            onkeydown="enterkey(event)"
+        >
+
+        <input
+            type="date"
+            class="addtolist"
+            onkeydown="enterkey(event)"
+        >
+
+        <button
+            class="addbutton"
+            onclick="addingtolist()"
+        >
+            Add
+        </button>
+
+    </div>
+
+    <div class="output todo-grid"></div>
+
+</div>
+
+<script>
+
+let listarray = [];
+
+function displaylist(){
+
+    let output = '';
+
+    for(let i=0;i<listarray.length;i++){
+
+        const item = listarray[i];
+
+        output += `
+            <div>${item.task}</div>
+
+            <div>${item.duedate}</div>
+
+            <button class="deletebutton"
+            onclick="
+                listarray.splice(${i},1);
+                displaylist();
+            ">
+                Delete
+            </button>
+        `;
+    }
+
+    document.querySelector('.output').innerHTML = output;
+}
+
+function enterkey(event){
+
+    if(event.key==='Enter'){
+        addingtolist();
+    }
+
+}
+
+function addingtolist(){
+
+    const item = document.querySelectorAll('.addtolist');
+
+    if(item[0].value.trim()===''){
+        return;
+    }
+
+    listarray.push({
+
+        task:item[0].value,
+        duedate:item[1].value
+
+    });
+
+    item[0].value='';
+    item[1].value='';
+
+    displaylist();
+
+}
+
+</script>
+
+</body>
+</html>
