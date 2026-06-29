@@ -87,6 +87,25 @@
         function displaylist(){
             let number = listarray.length;
             let output ='';
+            /*
+            listarray.forEach(function(item,i){
+                const task = item.task;
+                const date = item.duedate;
+
+                const html =`
+                    <div>${task}</div> 
+                    <div>${date}</div>
+                    <button class="deletebutton" onclick="
+                        listarray.splice(${i},1);
+                        displaylist();
+                    ">
+                        Delete
+                    </button>
+                `;
+                output=output+html;
+            })
+            document.querySelector('.output').innerHTML = output;
+            */
             for(let i=0;i<number;i++){
                 const item = listarray[i];
                 const task = item.task;
